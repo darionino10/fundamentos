@@ -1,0 +1,44 @@
+package taller;
+
+public class TALLER {
+
+	public static void main(String[] args) {
+
+		int numero1 = 5;
+		int numero2 = 10;
+		int suma = 0, resta = 0, multiplicacion = 0, division = 0;
+
+		suma = numero1 + numero2;
+		resta = numero1 - numero2;
+		multiplicacion = numero1 * numero2;
+		division = numero1 / numero2;
+
+		System.out.println("Resultado suma:" + suma);
+		System.out.println("Resultado resta: " + resta);
+		System.out.println("Resultado multiplicacion:" + multiplicacion);
+		System.out.println("Resultado division:" + division);
+		
+		System.out.print("incremento en uno del numero uno:"); 
+		System.out.println( ++numero1);
+		System.out.print("decremento en uno del numero dos:");
+		System.out.println(--numero2);
+		
+		int Num1=5, Num2=10 ; 
+		System.out.print("incremento del Num1 en dos:");
+		System.out.println(Num1 += 2);
+		System.out.print("multiplica el valor del Num2 por 3:");
+		System.out.println(Num2 *= 3);
+
+		boolean igualdad = numero1 == numero2;
+		boolean diferencia = numero1 != numero2;
+		boolean mayorque = numero1 > numero2;
+		boolean menorque = numero1 < numero2;
+
+		System.out.println("Comparación (numero1 == numero2): " + igualdad);
+		System.out.println("Comparación (numero1 != numero2): " + diferencia);
+		System.out.println("Comparación (numero1 > numero2): " + mayorque);
+		System.out.println("Comparación (numero1 < numero2): " + menorque);
+
+	}
+
+}
