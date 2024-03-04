@@ -1,0 +1,27 @@
+package kkkk;
+
+import java.util.Scanner;
+
+public class EJERCICIO {
+
+	public static void main(String[] args) {
+		  Scanner leer = new Scanner(System.in);
+
+	        System.out.print("Ingrese la cantidad de números a promediar: ");
+	        int cantidadNumeros = leer.nextInt();
+
+	        double suma = 0;
+
+	        for (int i = 0; i < cantidadNumeros; i++) {
+	            System.out.print("Ingrese el número " + (i + 1) + ": ");
+	            double numero = leer.nextDouble();
+	            suma += numero;
+	        }
+
+	        double promedio = suma / cantidadNumeros;
+
+	        System.out.println("El promedio es: " + promedio);
+
+	}
+
+}
