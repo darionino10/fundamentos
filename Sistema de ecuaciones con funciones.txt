@@ -1,0 +1,74 @@
+package kkkk;
+
+import java.util.Scanner;
+
+public class Funcionsistemadecalificaciones {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+
+		System.out.print("Ingrese el número de estudiantes: ");
+		int n = scanner.nextInt();
+		int[] calificaciones = new int[n];
+
+		for (int i = 0; i < n; i++) {
+			boolean notaValida = false;
+			while (!notaValida) {
+				System.out.print("Ingrese la calificación del estudiante " + (i + 1) + ": ");
+				int calificacion = scanner.nextInt();
+				if (calificacion >= 0 && calificacion <= 100) {
+					calificaciones[i] = calificacion;
+					notaValida = true;
+				} else {
+					System.out.println(
+							"La calificación debe estar en el rango de 0 a 100. Por favor, inténtelo de nuevo.");
+				}
+			}
+		}
+
+		calcularEstadisticas(calificaciones);
+	}
+
+	public static void calcularEstadisticas(int[] calificaciones) {
+	
+		int max = calificaciones[0];
+		int min = calificaciones[0];
+		int suma = calificaciones[0];
+		for (int i = 1; i < calificaciones.length; i++) {
+			suma += calificaciones[i];
+			if (calificaciones[i] > max) {
+				max = calificaciones[i];
+			}
+			if (calificaciones[i] < min) {
+				min = calificaciones[i];
+			}
+		}
+		double promedio = (double) suma / calificaciones.length;
+
+		int[] distribucion = new int[4]; 
+		for (int calificacion : calificaciones) {
+			if (calificacion >= 90) {
+				distribucion[0]++;
+			} else if (calificacion >= 70) {
+				distribucion[1]++;
+			} else if (calificacion >= 50) {
+				distribucion[2]++;
+			} else {
+				distribucion[3]++;
+			}
+		}
+
+		System.out.println("\nEstadísticas:");
+		System.out.println("Calificación más alta: " + max);
+		System.out.println("Calificación más baja: " + min);
+		System.out.println("Promedio de calificaciones: " + promedio);
+
+		System.out.println("\nDistribución de calificaciones:");
+		System.out.println("Excelente: " + distribucion[0]);
+		System.out.println("Bueno: " + distribucion[1]);
+		System.out.println("Regular: " + distribucion[2]);
+		System.out.println("Insuficiente: " + distribucion[3]);
+
+	}
+
+}
