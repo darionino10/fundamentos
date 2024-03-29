@@ -1,0 +1,34 @@
+package SemanaSanta;
+
+import java.util.Scanner;
+
+public class ejercicio1 {
+
+	public static void main(String[] args) {
+		// cree un programa que le pida al usuario 10 numeros  y este le imprima el numero mayor y el numero menor 
+		Scanner leer = new Scanner (System.in);	
+		
+		int Nmenor = 0 ; 
+		int Nmayor = 0 ;
+		int [] numeros = new int [10];
+		
+		for (int i = 0; i < 10; i ++) {
+			System.out.print("ingrse el numero" + (i + 1)+ ":");
+			numeros[i]= leer.nextInt();
+		}
+		for (int i = 1 ; i < numeros.length; i ++) {
+			if (Nmayor < numeros [i]) {
+				Nmayor = numeros [i];
+			}
+		}
+		
+		Nmenor = Nmayor ;
+		for (int i = 1 ; i < numeros.length; i ++) {
+			if (Nmenor > numeros [i]) {
+				Nmenor = numeros [i];
+			}
+		}
+		System.out.print("el numero mayor es: "+ Nmayor + " y el numero menor es: "+ Nmenor);
+	}	
+
+}
