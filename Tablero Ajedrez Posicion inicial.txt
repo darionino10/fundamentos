@@ -1,0 +1,34 @@
+package kkkk;
+
+public class bidimensional1TAB {
+    private String[][] tablero;
+
+    public bidimensional1TAB() {
+        tablero = new String[8][8];
+
+   
+        tablero[0] = new String[]{"T", "C", "A", "D", "R", "A", "C", "T"};
+        tablero[1] = new String[]{"P", "P", "P", "P", "P", "P", "P", "P"};
+      
+        for (int i = 2; i < 6; i++) {
+            tablero[i] = new String[]{"-", "-", "-", "-", "-", "-", "-", "-"};
+        }
+        tablero[6] = new String[]{"p", "p", "p", "p", "p", "p", "p", "p"};
+        tablero[7] = new String[]{"t", "c", "a", "d", "r", "a", "c", "t"};
+    }
+
+   
+    public void mostrarTablero() {
+        for (int i = 0; i < tablero.length; i++) {
+            for (int j = 0; j < tablero[i].length; j++) {
+                System.out.print(tablero[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        bidimensional1TAB tablero = new bidimensional1TAB();
+        tablero.mostrarTablero();
+    }
+}
