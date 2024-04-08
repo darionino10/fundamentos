@@ -1,0 +1,49 @@
+package kkkk;
+
+import java.util.Scanner;
+
+public class diasenmesfunciones {
+
+	public static void main(String[] args) {
+		 Scanner scanner = new Scanner(System.in);
+	        System.out.print("Ingrese el número de mes (1-12): ");
+	        int mes = scanner.nextInt();
+	        System.out.print("Ingrese el año: ");
+	        int año = scanner.nextInt();
+	        
+	        System.out.println("El mes ingresado tiene " + obtenerDiasEnMes(mes, año) + " días.");
+	        
+	        if(esBisiesto(año)) {
+	            System.out.println(año + " es un año bisiesto.");
+	        } else {
+	            System.out.println(año + " no es un año bisiesto.");
+	        }
+	    }
+
+	    public static int obtenerDiasEnMes(int mes, int año) {
+	        int dias;
+	        switch (mes) {
+	            case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+	                dias = 31;
+	                break;
+	            case 4: case 6: case 9: case 11:
+	                dias = 30;
+	                break;
+	            case 2:
+	                if (esBisiesto(año)) {
+	                    dias = 29;
+	                } else {
+	                    dias = 28;
+	                }
+	                break;
+	            default:
+	                dias = -1;
+	                break;
+	        }
+	        return dias;
+	    }
+
+	    public static boolean esBisiesto(int año) {
+	        return ((año % 4 == 0 && año % 100 != 0));
+	    }
+}
