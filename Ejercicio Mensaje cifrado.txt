@@ -1,0 +1,46 @@
+package kkkk;
+
+public class EJERCICIOCAMINO {
+	public static void main(String[] args) {
+		String mensajeSindescifrar = "Lpkpmtjzm";
+		int giros = 8;
+
+		String mensajeDescifrado = descifrarMensaje(mensajeSindescifrar, giros);
+		System.out.println("Mensaje descifrado: " + mensajeDescifrado);
+	}
+
+	public static String descifrarMensaje(String mensajeCifrado, int desplazamiento) {
+		StringBuilder mensajeDescifrado = new StringBuilder();
+		for (int i = 0; i < mensajeCifrado.length(); i++) {
+			char Palabra = mensajeCifrado.charAt(i);
+
+			if (Character.isLetter(Palabra)) {
+				char nuevaPalabra = descifrarCaracter(Palabra, desplazamiento);
+				mensajeDescifrado.append(Palabra);
+			} else {
+
+				mensajeDescifrado.append(Palabra);
+			}
+		}
+		return mensajeDescifrado.toString();
+	}
+
+	public static char descifrarCaracter(char caracter, int desplazamiento) {
+
+		String abecedario = "abcdefghijklmnñopqrstuvwxyz";
+
+		char base = Character.isUpperCase(caracter) ? 'A' : 'a';
+
+		int letra = abecedario.indexOf(Character.toLowerCase(caracter));
+
+		int nuevaLetra = (letra - desplazamiento) % abecedario.length();
+
+		if (nuevaLetra < 0) {
+			nuevaLetra += abecedario.length();
+		}
+
+		char caracterDescifrado = abecedario.charAt(nuevaLetra);
+
+		return Character.isUpperCase(caracter) ? Character.toUpperCase(caracterDescifrado) : caracterDescifrado;
+	}
+}
