@@ -1,0 +1,54 @@
+package kkkk;
+
+import java.util.Scanner;
+
+public class Sistema_de_ecuaciones {
+	public static void main(String[] args) {
+
+		Scanner scanner = new Scanner(System.in);
+
+		System.out.println("Ingrese los coeficientes de la matriz 3x3:");
+
+		double[][] matriz = new double[3][3];
+		for (int fila = 0; fila < 3; fila++) {
+			for (int columna = 0; columna < 3; columna++) {
+				System.out.printf("Ingrese el valor para la posición [%d][%d]: ", fila + 1, columna + 1);
+				matriz[fila][columna] = scanner.nextDouble();
+			}
+		}
+
+		System.out.println("\nMatriz ingresada:");
+		mostrarMatrizSinDecimales(matriz);
+
+		for (int i = 0; i < 3; i++) {
+
+			double divisor = matriz[i][i];
+			for (int j = 0; j < 3; j++) {
+				matriz[i][j] /= divisor;
+			}
+
+			for (int k = 0; k < 3; k++) {
+				if (k != i) {
+					double factor = matriz[k][i];
+					for (int j = 0; j < 3; j++) {
+						matriz[k][j] -= factor * matriz[i][j];
+					}
+				}
+			}
+		}
+
+		System.out.println("\nMatriz resultado:");
+		mostrarMatrizSinDecimales(matriz);
+
+		scanner.close();
+	}
+
+	public static void mostrarMatrizSinDecimales(double[][] matriz) {
+		for (int fila = 0; fila < 3; fila++) {
+			for (int columna = 0; columna < 3; columna++) {
+				System.out.printf("%d\t", (int) Math.round(matriz[fila][columna]));
+			}
+			System.out.println();
+		}
+	}
+}
