@@ -1,0 +1,66 @@
+package kkkk;
+
+import java.util.Scanner;
+
+public class EjercicioParcial {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+
+		System.out.println("Ingrese las dimensiones de las matrices (filas columnas):");
+		int filas = scanner.nextInt();
+		int columnas = scanner.nextInt();
+
+		System.out.println("Ingrese los elementos de la primera matriz:");
+		int[][] matriz1 = leerMatriz(filas, columnas, scanner);
+
+		System.out.println("Ingrese los elementos de la segunda matriz:");
+		int[][] matriz2 = leerMatriz(filas, columnas, scanner);
+
+
+		int[][] resultado = sumaMatrices(matriz1, matriz2);
+
+		if (resultado != null) {
+			System.out.println("Matriz resultante de la suma:");
+			mostrarMatriz(resultado);
+		}
+	}
+
+	public static int[][] sumaMatrices(int[][] matriz1, int[][] matriz2) {
+		if (matriz1.length != matriz2.length || matriz1[0].length != matriz2[0].length) {
+			System.out.println("Las matrices deben tener las mismas dimensiones.");
+			return null;
+		}
+
+		int filas = matriz1.length;
+		int columnas = matriz1[0].length;
+		int[][] resultado = new int[filas][columnas];
+
+		for (int i = 0; i < filas; i++) {
+			for (int j = 0; j < columnas; j++) {
+				resultado[i][j] = matriz1[i][j] + matriz2[i][j];
+			}
+		}
+		return resultado;
+	}
+
+	public static void mostrarMatriz(int[][] matriz) {
+		for (int i = 0; i < matriz.length; i++) {
+			for (int j = 0; j < matriz[0].length; j++) {
+				System.out.print(matriz[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+
+	public static int[][] leerMatriz(int filas, int columnas, Scanner scanner) {
+		int[][] matriz = new int[filas][columnas];
+		for (int i = 0; i < filas; i++) {
+			for (int j = 0; j < columnas; j++) {
+				matriz[i][j] = scanner.nextInt();
+			}
+		}
+		return matriz;
+	}
+
+}
