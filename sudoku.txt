@@ -1,0 +1,116 @@
+package kkkk;
+
+import java.util.Random;
+
+public class sudoku {
+
+	public static void main(String[] args) {
+		
+		int[][] sudoku = generarSudoku();
+		
+		cambiarFilas(sudoku);
+		cambiarColumnas(sudoku);
+
+	
+		mostrarSudoku(sudoku);
+	}
+
+	public static int[][] generarSudoku() {
+		int[][] sudoku = new int[9][9];
+		Random random = new Random();
+
+
+		for (int i = 0; i < 9; i += 3) {
+			int num = random.nextInt(9) + 1;
+			for (int j = 0; j < 3; j++) {
+				sudoku[i + j][i + j] = num;
+				num = (num % 9) + 1;
+			}
+		}
+
+	
+		resolverSudoku(sudoku);
+
+		return sudoku;
+	}
+
+
+	public static boolean resolverSudoku(int[][] sudoku) {
+		for (int fila = 0; fila < 9; fila++) {
+			for (int columna = 0; columna < 9; columna++) {
+				if (sudoku[fila][columna] == 0) {                    //....
+					for (int num = 1; num <= 9; num++) {
+						if (esValido(sudoku, fila, columna, num)) {
+							sudoku[fila][columna] = num;
+							if (resolverSudoku(sudoku)) {
+								return true;
+							} else {
+								sudoku[fila][columna] = 0;
+							}
+						}
+					}
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	
+	public static boolean esValido(int[][] sudoku, int fila, int columna, int num) {
+		for (int i = 0; i < 9; i++) {
+			if (sudoku[fila][i] == num || sudoku[i][columna] == num
+					|| sudoku[fila - fila % 3 + i / 3][columna - columna % 3 + i % 3] == num) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+
+	public static void cambiarFilas(int[][] sudoku) {
+		Random random = new Random();
+		for (int i = 0; i < 9; i += 3) {
+			int r1 = random.nextInt(3) + i;
+			int r2 = random.nextInt(3) + i;
+			while (r1 == r2) {
+				r2 = random.nextInt(3) + i;
+			}
+			int[] temp = sudoku[r1];
+			sudoku[r1] = sudoku[r2];
+			sudoku[r2] = temp;
+		}
+	}
+
+
+	public static void cambiarColumnas(int[][] sudoku) {
+		Random random = new Random();
+		for (int i = 0; i < 9; i += 3) {
+			int r1 = random.nextInt(3) + i;
+			int r2 = random.nextInt(3) + i;
+			while (r1 == r2) {
+				r2 = random.nextInt(3) + i;
+			}
+			for (int j = 0; j < 9; j++) {
+				int temp = sudoku[j][r1];
+				sudoku[j][r1] = sudoku[j][r2];
+				sudoku[j][r2] = temp;
+			}
+		}
+	}
+
+	public static void mostrarSudoku(int[][] sudoku) {
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				System.out.print(sudoku[i][j] + " ");
+				if ((j + 1) % 3 == 0 && j != 8) {
+					System.out.print("| ");
+				}
+			}
+			System.out.println();
+			if ((i + 1) % 3 == 0 && i != 8) {
+				System.out.println("---------------------");
+			}
+		}
+	}
+}
